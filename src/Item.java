@@ -21,7 +21,6 @@ public class Item {
 
 
     public static Item createItem() {
-
         String name = ScannerHelper.getString(askName);
         int sku = MathHelper.getARandomNumber(1_000_000, 9_999_999); // sku => 1_000_000 to 9_999_999
         int amount = ScannerHelper.getInt(askAmount);
