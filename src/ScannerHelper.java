@@ -15,6 +15,30 @@ public class ScannerHelper {
      * getDouble(String question)
      */
 
-    // Create a method which will create and return scanner object
+    /**
+     *
+     * @param question -> this paramater is for printing out my question
+     * @return the input that I got from user as String
+     */
+    public static String getString(String question){
+        System.out.println(question);
+        return scan().nextLine();
+    }
+
+
+    public static int getInt(String question){
+        System.out.println(question);
+        return scan().nextInt();
+    }
+
+    public static double getDouble(String question){
+        System.out.println(question);
+        return scan().nextDouble();
+    }
+
+    public static Scanner scan(){
+//      NOT THIS ==>  Scanner scanner = new Scanner(System.in);
+        return new Scanner(System.in);
+    }
 
 }
