@@ -6,6 +6,7 @@ public class Address {
     public static final String askState = "What is the current state?";
     public static final String askCountry = "What is the name of your country?";
     public static final String askZip = "What is your zipcode?";
+    public static final String askZipOneMore = "Please enter a valid zipcode!";
 
     public Address(String street1, String city, String state, String country, String zip) {
         this.street1 = street1;
@@ -36,6 +37,9 @@ public class Address {
         String country = ScannerHelper.getString(askCountry);
         String zip = ScannerHelper.getString(askZip);
 
+        while (!isValidZip(zip)){
+            zip = ScannerHelper.getString(askZipOneMore);
+        }
 
         if (street2.isEmpty()) return new Address(street1, city, state, country, zip);
         return new Address(street1, street2, city, state, country, zip);
@@ -73,11 +77,7 @@ public class Address {
     }
 
     public static void main(String[] args) {
-        System.out.println(isValidZip("60000"));
-        System.out.println(isValidZip("600ss"));
-        System.out.println(isValidZip("60000-0000"));
-        System.out.println(isValidZip("600ss123asd"));
-        System.out.println(isValidZip(""));
+        System.out.println(createAddress());
     }
 
 }

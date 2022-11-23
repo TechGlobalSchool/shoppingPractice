@@ -27,9 +27,11 @@ public class Order {
             print every item
             print the total
             print address
+            print payment
              */
 
             Address address = Address.createAddress();
+            Payment payment = Payment.createPayment();
 
             double totalPrice = 0;
 
@@ -41,6 +43,12 @@ public class Order {
             System.out.println(Questions.totalPriceMessage + totalPrice);
 
             System.out.println(address);
+
+            System.out.println(payment);
+
+            if (ScannerHelper.getString(Questions.confirmationMessage).toUpperCase().startsWith("Y"))
+                System.out.println(Questions.gotYourOrder);
+            else System.out.println(Questions.errorMessage);
         }
 
     }
