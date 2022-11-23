@@ -7,7 +7,7 @@ public class Address {
     public static final String askCountry = "What is the name of your country?";
     public static final String askZip = "What is your zipcode?";
 
-    public Address(String street1, String city, String state, String country, int zip) {
+    public Address(String street1, String city, String state, String country, String zip) {
         this.street1 = street1;
         this.city = city;
         this.state = state;
@@ -15,7 +15,7 @@ public class Address {
         this.zip = zip;
     }
 
-    public Address(String street1, String street2, String city, String state, String country, int zip) {
+    public Address(String street1, String street2, String city, String state, String country, String zip) {
         this(street1, city, state, country, zip);
         this.street2 = street2;
     }
@@ -25,7 +25,7 @@ public class Address {
     public String city;
     public String state;
     public String country;
-    public int zip;
+    public String zip;
 
 
     public static Address createAddress() {
@@ -34,10 +34,29 @@ public class Address {
         String city = ScannerHelper.getString(askCity);
         String state = ScannerHelper.getString(askState);
         String country = ScannerHelper.getString(askCountry);
-        int zip = ScannerHelper.getInt(askZip);
+        String zip = ScannerHelper.getString(askZip);
+
 
         if (street2.isEmpty()) return new Address(street1, city, state, country, zip);
         return new Address(street1, street2, city, state, country, zip);
+    }
+
+    public static boolean isValidZip(String zip) {
+        // Everything other than dash should be DIGITS
+        // 60000 -> length = 5
+        // 60000-0000 -> length = 10 && dash should be at index 5
+        // 600000000 NO
+        // 60asd0000 NO
+
+        //length validation
+        if (zip.length() != 10 && zip.length() != 5) return false;
+
+        for (int i = 0; i < zip.length(); i++) {
+            if ((zip.charAt(i) == '-' && i == 5)) continue;
+            if (!Character.isDigit(zip.charAt(i))) return false;
+        }
+
+        return true;
     }
 
 
@@ -51,6 +70,14 @@ public class Address {
                 ", country='" + country + '\'' +
                 ", zip=" + zip +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isValidZip("60000"));
+        System.out.println(isValidZip("600ss"));
+        System.out.println(isValidZip("60000-0000"));
+        System.out.println(isValidZip("600ss123asd"));
+        System.out.println(isValidZip(""));
     }
 
 }

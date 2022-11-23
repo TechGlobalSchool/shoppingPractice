@@ -15,6 +15,7 @@ public class Questions {
     public static final String askItem = "Would you like to add an item? (Y/N)";
     public static final String askContinue = "Would you like to add another item? (Y/N)";
     public static final String errorMessage = "You exited the application!";
+    public static final String totalPriceMessage = "Your total price is = ";
 
 
 }

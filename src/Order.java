@@ -12,7 +12,6 @@ public class Order {
 
         //create a loop and create and store items in the list until user says no
         do {
-
             String response = ScannerHelper.getString(
                     items.isEmpty() ? Questions.askItem : Questions.askContinue
             );
@@ -22,14 +21,27 @@ public class Order {
             items.add(Item.createItem());
         }while (true);
 
-        // if there is no item print out you exited application
+        if (items.isEmpty()) System.out.println(Questions.errorMessage);
+        else {
+             /*
+            print every item
+            print the total
+            print address
+             */
 
+            Address address = Address.createAddress();
 
-        /*
-        print every item
-        print the total
-        print address
-         */
+            double totalPrice = 0;
+
+            for (Item item : items) {
+                System.out.println(item);
+                totalPrice += item.price;
+            }
+
+            System.out.println(Questions.totalPriceMessage + totalPrice);
+
+            System.out.println(address);
+        }
 
     }
 }
